@@ -65,11 +65,18 @@ header{
   min-width:240px;
 }
 .brand .logo{
-  height:46px; width:auto; display:block;
-  border-radius:12px;
-  border:1px solid var(--border);
-  background:#0a1222;
-  box-shadow:0 10px 30px rgba(0,0,0,.35);
+  height:60px;
+  width:auto;
+  display:block;
+
+  /* FLOATING CLEAN */
+  background:transparent;
+  border:none;
+  border-radius:0;
+  box-shadow:none;
+
+  /* subtle depth, not a box */
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.35));
 }
 .brandText h1{
   font-size:14px; letter-spacing:.6px; font-weight:950;
@@ -1124,6 +1131,7 @@ init();
 </script>
 </body>
 </html>
+
 
 
 
