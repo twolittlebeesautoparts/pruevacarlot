@@ -693,7 +693,27 @@ Our goal is simple: make car buying smarter, faster, and more transparent.
   </div>
 </div>
 
+
+<!-- ✅ PASTE THESE TWO LINES HERE -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<!-- ✅ THEN your big script starts -->
 <script>
+  /* =========================
+   FIREBASE INIT
+========================= */
+const firebaseConfig = {
+  apiKey: "AIzaSyAdj9oeteNGimdUbKisMrGCko7F4PlvPpM",
+  authDomain: "einstein-auto-sales-llc.firebaseapp.com",
+  projectId: "einstein-auto-sales-llc",
+  storageBucket: "einstein-auto-sales-llc.firebasestorage.app",
+  messagingSenderId: "445204063873",
+  appId: "1:445204063873:web:25846a7c30de0bea93cf80"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 /* =========================
    CONFIG
 ========================= */
@@ -707,7 +727,7 @@ const ADMIN_KEY = "einstein_admin_session";
    STATE
 ========================= */
 let isAdmin = sessionStorage.getItem(ADMIN_KEY) === "1";
-let inventory = loadInventory();
+let inventory = [];
 let currentId = null; // selected vehicle for modal
 
 /* =========================
@@ -743,17 +763,19 @@ function toggleMenu(){
 /* =========================
    STORAGE
 ========================= */
-function loadInventory(){
-  try{
-    const raw = localStorage.getItem(STORE_KEY);
-    const arr = raw ? JSON.parse(raw) : [];
-    return Array.isArray(arr) ? arr : [];
-  }catch{
-    return [];
-  }
+async function loadInventory(){
+  const snap = await db.collection("vehicles").orderBy("createdAt", "desc").get();
+  const arr = [];
+  snap.forEach(doc => arr.push({ id: doc.id, ...doc.data() }));
+  return arr;
 }
-function saveInventory(){
-  localStorage.setItem(STORE_KEY, JSON.stringify(inventory));
+async function upsertVehicle(v){
+  // v.id is your doc id
+  await db.collection("vehicles").doc(v.id).set(v, { merge: true });
+}
+
+async function removeVehicle(id){
+  await db.collection("vehicles").doc(id).delete();
 }
 
 /* =========================
@@ -1063,12 +1085,9 @@ async function saveVehicle(){
     return;
   }
 
-  const idx = inventory.findIndex(x=>x.id===v.id);
-  if(idx >= 0) inventory[idx] = v;
-  else inventory.unshift(v);
-
-  saveInventory();
-  renderInventory();
+  await upsertVehicle(v);
+inventory = await loadInventory();
+renderInventory();
 
   $("adminMsg").textContent = editingId ? "Updated." : "Saved.";
   $("adminBar").setAttribute("data-id", v.id);
@@ -1107,15 +1126,16 @@ function editVehicle(){
   toast("Edit mode");
 }
 
-function deleteVehicle(){
+async function deleteVehicle(){
   if(!isAdmin || !currentId) return;
   const v = inventory.find(x=>x.id===currentId);
   if(!v) return;
 
   if(!confirm("Delete this vehicle?")) return;
 
-  inventory = inventory.filter(x=>x.id!==currentId);
-  saveInventory();
+  await removeVehicle(currentId);     // deletes from Firestore
+  inventory = await loadInventory();  // reload inventory from Firestore
+
   closeModal();
   renderInventory();
   toast("Deleted");
@@ -1124,15 +1144,25 @@ function deleteVehicle(){
 /* =========================
    INIT
 ========================= */
-function init(){
+async function init(){
+  try{
+    inventory = await loadInventory();   // ✅ LOAD FROM FIRESTORE ON PAGE LOAD
+  }catch(e){
+    console.error("loadInventory failed:", e);
+  }
+
   if(isAdmin) showAdminUI();
   else hideAdminUI();
+
   renderInventory();
 }
 init();
+  
 </script>
+
 </body>
 </html>
+
 
 
 
