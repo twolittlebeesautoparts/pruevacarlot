@@ -1,559 +1,470 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>EINSTEIN AUTO SALES LLC</title>
+<meta name="description" content="EINSTEIN AUTO SALES LLC — Clean, modern inventory with admin tools. 401 S Tibbs Ave. Call (317) 492-9196." />
 <meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#070b12">
-<meta name="description" content="EINSTEIN AUTO SALES LLC — clean inventory, easy buying, Indianapolis.">
+<meta name="theme-color" content="#0b1220" />
 
 <style>
 :root{
-  /* Dark metallic blue / black / white + dark red accent */
   --bg:#070b12;
-  --bg2:#0a1020;
-  --panel:#0e1626;
-  --panel2:#0b1220;
-  --card:#0f1a2e;
+  --bg2:#0b1220;
+  --panel:#0f1a2e;
+  --panel2:#0b1526;
+  --card:#0f192b;
+  --row:#0b1424;
+
+  --text:#f5f7fb;
+  --muted:#a7b0c0;
+
+  --blue:#2f6cff;        /* metallic blue */
+  --blue2:#1f55d7;
+  --red:#b21f2d;         /* dark red accent */
+  --red2:#7f1720;
+
   --border:rgba(255,255,255,.10);
-
-  --text:#f8fafc;
-  --muted:#a7b0bf;
-
-  --blue:#2f6df6;
-  --blue2:#1f4fd1;
-
-  --red:#8b1d2c;
-  --red2:#b32639;
-
-  --ok:#22c55e;
-  --warn:#f59e0b;
-  --bad:#ef4444;
-
-  --shadow:0 28px 70px rgba(0,0,0,.55);
+  --border2:rgba(255,255,255,.14);
+  --shadow:0 18px 60px rgba(0,0,0,.55);
   --radius:18px;
-  --radius2:12px;
+  --radius2:14px;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{width:100%;max-width:100%;overflow-x:hidden}
 body{
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  color:var(--text);
   background:
-    radial-gradient(900px 520px at 20% -10%, rgba(47,109,246,.20), transparent 60%),
-    radial-gradient(900px 520px at 90% 0%, rgba(139,29,44,.16), transparent 60%),
-    radial-gradient(900px 520px at 40% 120%, rgba(255,255,255,.06), transparent 60%),
-    linear-gradient(180deg, rgba(10,16,32,.45), rgba(7,11,18,.0)),
-    var(--bg);
-  padding-left:env(safe-area-inset-left);
-  padding-right:env(safe-area-inset-right);
-  padding-bottom:calc(env(safe-area-inset-bottom) + 18px);
-  -webkit-font-smoothing:antialiased;
+    radial-gradient(900px 520px at 12% -10%, rgba(47,108,255,.22), transparent 60%),
+    radial-gradient(900px 520px at 92% 0%, rgba(178,31,45,.16), transparent 60%),
+    linear-gradient(180deg, var(--bg), var(--bg2));
+  color:var(--text);
+  padding-bottom:calc(24px + env(safe-area-inset-bottom));
 }
 
-a{color:inherit}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-button[disabled]{opacity:.6;cursor:not-allowed}
-::selection{background:rgba(47,109,246,.35)}
+/* Layout */
+.container{max-width:1200px;margin:auto;padding:0 16px}
+.section{padding:34px 0}
+.grid{display:grid;gap:16px}
 
-.container{max-width:1200px;margin:0 auto;padding:0 16px}
-.hr{height:1px;background:rgba(255,255,255,.10);border:none;margin:14px 0}
-
-/* ===== Header ===== */
+/* Header */
 header{
-  position:sticky; top:0; z-index:100;
-  background:rgba(7,11,18,.88);
-  backdrop-filter:blur(10px);
+  position:sticky; top:0; z-index:1000;
+  background:rgba(7,11,18,.78);
+  backdrop-filter:blur(12px);
   border-bottom:1px solid rgba(255,255,255,.08);
 }
-
 .header-inner{
   display:flex; align-items:center; justify-content:space-between;
-  gap:12px; padding:12px 0; flex-wrap:wrap;
+  gap:14px; padding:12px 0;
 }
-
 .brand{
   display:flex; align-items:center; gap:12px;
   min-width:240px;
 }
-
-.mark{
-  width:44px;height:44px;border-radius:14px;
-  border:1px solid rgba(255,255,255,.12);
-  background:
-    radial-gradient(18px 18px at 30% 35%, rgba(255,255,255,.28), transparent 60%),
-    linear-gradient(135deg, rgba(47,109,246,.85), rgba(139,29,44,.65));
-  box-shadow:0 16px 34px rgba(0,0,0,.35);
-  display:grid; place-items:center;
-  font-weight:950; letter-spacing:-.5px;
+.brand .logo{
+  height:46px; width:auto; display:block;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:#0a1222;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
 }
-
-.brand h1{
-  font-size:1rem;
-  font-weight:950;
-  letter-spacing:.2px;
-  line-height:1.2;
+.brandText h1{
+  font-size:14px; letter-spacing:.6px; font-weight:950;
 }
-.brand .sub{
-  color:var(--muted);
-  font-size:.82rem;
-  font-weight:800;
-  margin-top:2px;
-}
+.brandText .sub{font-size:11px;color:var(--muted);margin-top:2px}
 
-nav{
+/* Nav */
+.nav{
   display:flex; gap:8px; align-items:center; flex-wrap:wrap;
-  justify-content:center;
 }
-
 .pill{
   text-decoration:none;
-  font-weight:950;
-  font-size:.88rem;
-  padding:9px 12px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.12);
+  border:1px solid var(--border);
   color:var(--text);
-  background:rgba(15,26,46,.45);
-  transition:transform .12s ease, filter .12s ease;
-  user-select:none;
-  -webkit-tap-highlight-color:transparent;
+  background:rgba(15,26,46,.55);
+  padding:10px 12px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:900;
+  display:inline-flex; align-items:center; gap:8px;
+  cursor:pointer;
 }
-.pill:hover{filter:brightness(1.06)}
-.pill:active{transform:scale(.99)}
+.pill:hover{border-color:var(--border2)}
 .pill.primary{
-  background:linear-gradient(135deg, var(--blue), var(--blue2));
   border:none;
+  background:linear-gradient(180deg,var(--blue),var(--blue2));
 }
 .pill.red{
-  background:linear-gradient(135deg, var(--red), var(--red2));
   border:none;
+  background:linear-gradient(180deg,var(--red),var(--red2));
 }
 .pill.ghost{
-  background:rgba(255,255,255,.06);
+  background:transparent;
 }
+.menuBtn{display:none}
 
-/* ===== Hero ===== */
+/* Hero */
 .hero{
-  padding:44px 0 18px;
-  display:grid;
-  grid-template-columns:1.08fr .92fr;
-  gap:18px;
-  align-items:start;
+  padding:34px 0 10px;
 }
-
-.hero h2{
-  font-size:clamp(2.0rem,4.6vw,3.2rem);
-  line-height:1.03;
-  letter-spacing:-.8px;
-  margin-top:10px;
+.heroWrap{
+  display:grid; gap:16px;
+  grid-template-columns:1.15fr .85fr;
+  align-items:stretch;
 }
-
-.hero p{
+.heroCard{
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)), var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:22px;
+  box-shadow:var(--shadow);
+}
+.heroTitle{
+  font-size:clamp(1.9rem, 4.3vw, 3.0rem);
+  font-weight:980;
+  line-height:1.04;
+  letter-spacing:.2px;
+}
+.heroLead{
+  margin-top:12px;
   color:var(--muted);
-  font-size:1.02rem;
-  line-height:1.55;
-  max-width:620px;
-  margin:14px 0 18px;
+  max-width:60ch;
+  line-height:1.45;
 }
-
-.badges{
-  display:flex; flex-wrap:wrap; gap:10px;
-  margin:14px 0 6px;
-}
-.badge{
-  display:inline-flex; align-items:center; gap:10px;
-  padding:8px 12px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(11,18,32,.55);
-  font-weight:950;
-  font-size:.86rem;
-}
-.badge .dot{
-  width:8px;height:8px;border-radius:999px;
-  background:rgba(255,255,255,.22);
-  box-shadow:0 0 0 3px rgba(255,255,255,.08);
-}
-.badge.blue .dot{background:var(--blue); box-shadow:0 0 0 3px rgba(47,109,246,.18)}
-.badge.red .dot{background:var(--red2); box-shadow:0 0 0 3px rgba(179,38,57,.18)}
-
-.ctaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
-
-.btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:10px;
-  padding:14px 18px;
-  border-radius:14px;
-  font-weight:950;
-  text-decoration:none;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.06);
-  transition:transform .12s ease, filter .12s ease;
-  -webkit-tap-highlight-color:transparent;
-}
-.btn:active{transform:scale(.99)}
-.btn.primary{
-  background:linear-gradient(135deg, var(--blue), var(--blue2));
-  border:none;
-}
-.btn.red{
-  background:linear-gradient(135deg, var(--red), var(--red2));
-  border:none;
-}
-.btn .icon{opacity:.95}
-
-.stats{
+.heroBtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.heroStats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:12px;
   margin-top:18px;
 }
 .stat{
-  background:rgba(15,26,46,.55);
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:16px;
-  padding:14px;
+  background:rgba(11,21,38,.62);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px;
   text-align:center;
 }
-.stat b{display:block;font-size:1.15rem}
-.stat span{color:var(--muted);font-weight:800;font-size:.86rem}
+.stat b{display:block;color:#fff;font-weight:980;font-size:14px}
+.stat span{display:block;color:var(--muted);font-size:11px;margin-top:4px}
 
-/* ===== Cards / Sections ===== */
-.section{padding:18px 0}
-.card{
-  background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)), var(--panel);
-  border:1px solid rgba(255,255,255,.12);
+.sideCard{
+  background:linear-gradient(180deg, rgba(47,108,255,.12), rgba(255,255,255,.02)), var(--card);
+  border:1px solid rgba(47,108,255,.25);
   border-radius:var(--radius);
-  padding:20px;
+  padding:22px;
   box-shadow:var(--shadow);
 }
-.cardHead{
-  display:flex; align-items:flex-end; justify-content:space-between;
-  gap:12px; flex-wrap:wrap;
-}
-.card h3{font-size:1.05rem; font-weight:950}
-.mini{color:var(--muted); font-weight:850; font-size:.86rem}
-
-.grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px}
-@media(max-width:920px){ .hero{grid-template-columns:1fr} .grid2{grid-template-columns:1fr} .stats{grid-template-columns:1fr} }
-
-/* ===== Inventory UI ===== */
-.toolbar{
-  display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-  margin-top:12px;
-}
-input,select,textarea{
-  background:#0a1222;
-  color:var(--text);
-  border:1px solid rgba(255,255,255,.14);
-  padding:12px;
-  border-radius:var(--radius2);
-  outline:none;
-}
-input:focus,select:focus,textarea:focus{
-  border-color:rgba(47,109,246,.75);
-  box-shadow:0 0 0 4px rgba(47,109,246,.16);
-}
-
-.search{flex:1 1 260px}
-select{flex:0 0 220px}
-
-.kbd{
-  font-size:.78rem;
-  color:var(--muted);
-  border:1px solid rgba(255,255,255,.14);
-  background:rgba(255,255,255,.06);
-  padding:6px 10px;
+.badge{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:8px 12px;
   border-radius:999px;
-  font-weight:900;
+  border:1px solid rgba(47,108,255,.30);
+  background:rgba(47,108,255,.12);
+  font-size:12px;
+  font-weight:950;
 }
+.sideCard h3{margin-top:12px;font-size:16px;font-weight:980}
+.sideCard p{margin-top:10px;color:var(--muted);line-height:1.45}
+.sideList{margin-top:12px;display:grid;gap:10px}
+.sideItem{
+  display:flex;justify-content:space-between;gap:12px;
+  background:rgba(11,21,38,.65);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px;
+}
+.sideItem .k{color:var(--muted);font-size:12px;font-weight:900}
+.sideItem .v{font-size:12px;font-weight:980}
 
+/* Cards */
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)), var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+.card h2{font-size:16px;font-weight:980}
+.card p{margin-top:10px;color:var(--muted);line-height:1.6}
+
+/* Inventory */
+.tools{
+  display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+  margin-top:14px;
+}
+.input, select, textarea{
+  width:100%;
+  padding:12px 12px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:#091225;
+  color:var(--text);
+  font-size:13px;
+}
+.input:focus, select:focus, textarea:focus{
+  outline:none;
+  border-color:rgba(47,108,255,.55);
+  box-shadow:0 0 0 4px rgba(47,108,255,.16);
+}
+.toolRow{
+  display:grid;
+  grid-template-columns: 1.2fr .8fr .8fr;
+  gap:10px;
+  width:100%;
+}
 .invGrid{
   display:grid;
   grid-template-columns:repeat(3, 1fr);
-  gap:12px;
+  gap:14px;
   margin-top:14px;
 }
-@media(max-width:1000px){ .invGrid{grid-template-columns:repeat(2,1fr)} }
-@media(max-width:600px){ .invGrid{grid-template-columns:1fr} }
-
 .vehicleCard{
+  background:rgba(11,21,38,.62);
+  border:1px solid var(--border);
   border-radius:18px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(10,16,32,.55);
   overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  min-height:260px;
+  box-shadow:0 10px 30px rgba(0,0,0,.28);
+  display:grid;
 }
 .thumb{
-  background:
-    radial-gradient(600px 140px at 30% 0%, rgba(47,109,246,.22), transparent 50%),
-    radial-gradient(600px 140px at 80% 10%, rgba(179,38,57,.18), transparent 55%),
-    #0b1220;
-  height:170px;
+  height:180px;
+  background:linear-gradient(135deg, rgba(47,108,255,.12), rgba(178,31,45,.08)), #0a1222;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  cursor:pointer;
   position:relative;
 }
-.thumb img{
-  width:100%;
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.noimg{
   height:100%;
-  object-fit:cover;
-  display:block;
-}
-.thumb .noimg{
-  position:absolute; inset:0;
-  display:grid; place-items:center;
-  color:rgba(255,255,255,.55);
+  display:grid;
+  place-items:center;
   font-weight:950;
-  letter-spacing:.4px;
-  text-transform:uppercase;
-  font-size:.85rem;
+  color:rgba(255,255,255,.55);
+}
+.priceBadge{
+  position:absolute; left:10px; top:10px;
+  padding:8px 10px;
+  border-radius:999px;
+  background:rgba(0,0,0,.55);
+  border:1px solid rgba(255,255,255,.14);
+  font-size:12px;
+  font-weight:980;
+  backdrop-filter:blur(10px);
+}
+.milesBadge{
+  position:absolute; right:10px; top:10px;
+  padding:8px 10px;
+  border-radius:999px;
+  background:rgba(0,0,0,.55);
+  border:1px solid rgba(255,255,255,.14);
+  font-size:12px;
+  font-weight:980;
+  backdrop-filter:blur(10px);
 }
 .vBody{padding:14px}
-.vTitle{
-  font-weight:950;
-  font-size:1.02rem;
-  line-height:1.2;
-}
-.vMeta{
-  margin-top:6px;
-  color:var(--muted);
-  font-weight:850;
-  font-size:.9rem;
-  line-height:1.35;
-}
-.tags{
-  display:flex; flex-wrap:wrap; gap:8px;
-  margin-top:10px;
-}
+.vTitle{font-weight:980;font-size:14px;line-height:1.2}
+.vMeta{color:var(--muted);font-size:12px;margin-top:6px;line-height:1.4}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .tag{
-  font-size:.78rem;
-  font-weight:950;
-  padding:6px 10px;
+  font-size:10px;
+  padding:5px 8px;
   border-radius:999px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.06);
-  color:var(--text);
+  border:1px solid var(--border);
+  color:var(--muted);
+  font-weight:950;
+  background:rgba(7,11,18,.25);
 }
-.tag.blue{border-color:rgba(47,109,246,.35); background:rgba(47,109,246,.12)}
-.tag.red{border-color:rgba(179,38,57,.35); background:rgba(179,38,57,.12)}
-
 .vActions{
+  display:flex; gap:10px;
   padding:12px 14px 14px;
-  margin-top:auto;
-  display:flex;
-  gap:10px;
 }
 .smallBtn{
   flex:1;
-  padding:11px 12px;
-  border-radius:14px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.06);
+  padding:10px 10px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:#091225;
   color:var(--text);
-  font-weight:950;
+  font-weight:980;
+  cursor:pointer;
+  font-size:12px;
 }
-.smallBtn.primary{
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
-  border:none;
-}
-.smallBtn.danger{
-  background:linear-gradient(135deg,var(--red),var(--red2));
-  border:none;
-}
+.smallBtn.primary{border:none;background:linear-gradient(180deg,var(--blue),var(--blue2))}
+.smallBtn.danger{border:none;background:linear-gradient(180deg,var(--red),var(--red2))}
+.smallBtn:active{transform:scale(.99)}
 
-/* ===== Admin Panel ===== */
-.adminWrap{
-  display:none;
-}
-.adminGrid{
-  display:grid;
-  grid-template-columns:repeat(4, minmax(0,1fr));
-  gap:10px;
-}
-@media(max-width:1000px){ .adminGrid{grid-template-columns:repeat(2,1fr)} }
-@media(max-width:600px){ .adminGrid{grid-template-columns:1fr} }
-
-.full{grid-column:1 / -1}
-.fileRow{
-  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
-}
-.fileInfo{color:var(--muted); font-weight:850; font-size:.88rem}
-.previewGrid{
-  margin-top:12px;
-  display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(120px,1fr));
-  gap:10px;
-}
-.pv{
-  border-radius:14px;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.06);
-  height:100px;
-  position:relative;
-}
-.pv img{width:100%;height:100%;object-fit:cover;display:block}
-.pv button{
-  position:absolute; top:8px; right:8px;
-  width:28px;height:28px;border-radius:999px;
-  border:1px solid rgba(255,255,255,.18);
-  background:rgba(0,0,0,.45);
-  color:#fff;
-  font-weight:950;
-}
-
-/* ===== Modal ===== */
-.backdrop{
+/* Modal */
+.modalWrap{
   position:fixed; inset:0;
-  background:rgba(0,0,0,.58);
   display:none;
-  z-index:998;
+  background:rgba(0,0,0,.55);
+  backdrop-filter:blur(8px);
+  z-index:2000;
+  padding:16px;
 }
 .modal{
-  position:fixed;
-  left:50%;
-  transform:translateX(-50%);
-  top:8vh;
-  width:min(980px, calc(100vw - 24px));
-  max-height:84vh;
-  overflow:auto;
-  display:none;
-  z-index:999;
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(10,16,32,.92);
-  box-shadow:0 40px 90px rgba(0,0,0,.65);
-}
-.modalInner{padding:16px}
-.modalHead{
-  display:flex; align-items:flex-start; justify-content:space-between;
-  gap:12px;
-}
-.modalTitle{font-weight:950;font-size:1.05rem}
-.modalClose{
+  max-width:980px; margin:40px auto;
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)), var(--panel2);
   border:1px solid rgba(255,255,255,.14);
-  background:rgba(255,255,255,.06);
-  color:var(--text);
-  padding:8px 10px;
-  border-radius:12px;
-  font-weight:950;
-}
-
-.modalGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
-@media(max-width:900px){ .modalGrid{grid-template-columns:1fr} }
-.gallery{
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.06);
+  border-radius:22px;
+  box-shadow:0 24px 80px rgba(0,0,0,.7);
   overflow:hidden;
 }
-.galleryTop{
-  height:320px;
-  background:#0b1220;
-  position:relative;
+.modalTop{
+  display:flex; justify-content:space-between; align-items:center; gap:12px;
+  padding:14px 16px;
+  border-bottom:1px solid rgba(255,255,255,.10);
 }
-.galleryTop img{width:100%;height:100%;object-fit:cover;display:block}
-.galleryThumbs{
-  display:flex; gap:8px; overflow:auto;
-  padding:10px;
-  border-top:1px solid rgba(255,255,255,.10);
-  background:rgba(0,0,0,.18);
+.modalTop b{font-weight:980}
+.modalClose{
+  width:40px;height:40px;border-radius:12px;
+  border:1px solid var(--border);
+  background:#091225; color:var(--text);
+  font-weight:980; cursor:pointer;
 }
-.galleryThumbs img{
-  width:76px;height:56px;object-fit:cover;
+.modalBody{
+  display:grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap:0;
+}
+.gallery{
+  background:#05080f;
+  border-right:1px solid rgba(255,255,255,.08);
+}
+.gMain{height:360px; background:#000}
+.gMain img{width:100%;height:100%;object-fit:cover;display:block}
+.gThumbs{
+  display:flex; gap:10px;
+  padding:12px;
+  overflow:auto;
+}
+.gThumbs img{
+  width:92px;height:62px;object-fit:cover;
   border-radius:12px;
-  border:1px solid rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.14);
   cursor:pointer;
-  opacity:.92;
+  opacity:.85;
 }
-.galleryThumbs img.active{
-  outline:2px solid rgba(47,109,246,.85);
-  opacity:1;
+.gThumbs img.active{outline:2px solid rgba(47,108,255,.75); opacity:1}
+.details{
+  padding:16px;
 }
-.detail{
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.06);
-  padding:14px;
-}
-.detail .line{color:var(--muted);font-weight:850;margin-top:10px;line-height:1.45}
-.detail .kv{
+.dTitle{font-size:18px;font-weight:980}
+.dSub{color:var(--muted);margin-top:8px;line-height:1.45}
+.dGrid{
+  margin-top:14px;
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
+}
+.dItem{
+  background:rgba(7,11,18,.35);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:14px;
+  padding:12px;
+}
+.dItem .k{color:var(--muted);font-size:11px;font-weight:950}
+.dItem .v{margin-top:6px;font-size:13px;font-weight:980}
+.modalBtns{
+  margin-top:14px;
+  display:flex; gap:10px; flex-wrap:wrap;
+}
+.noteBox{
+  margin-top:12px;
+  background:rgba(7,11,18,.35);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:14px;
+  padding:12px;
+  color:var(--muted);
+  line-height:1.55;
+  font-size:13px;
+}
+
+/* Admin panel */
+.adminBar{
+  display:none;
+  margin-top:14px;
+  border-top:1px dashed rgba(255,255,255,.12);
+  padding-top:14px;
+}
+.formGrid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:10px;
   margin-top:12px;
 }
-@media(max-width:520px){ .detail .kv{grid-template-columns:1fr} }
-.kvItem{
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(0,0,0,.16);
-  border-radius:14px;
-  padding:10px 12px;
+.formGrid .wide{grid-column:span 2}
+.formGrid .full{grid-column:1/-1}
+.adminActions{
+  display:flex; gap:10px; flex-wrap:wrap;
+  margin-top:12px;
 }
-.kvItem .k{color:var(--muted);font-weight:900;font-size:.82rem}
-.kvItem .v{font-weight:950;margin-top:3px}
-
-/* ===== Notes / Toast ===== */
-.note{
+.help{
   margin-top:10px;
-  font-size:12px;
-  min-height:18px;
   color:var(--muted);
-  display:flex;
-  align-items:center;
-  gap:8px;
+  font-size:12px;
+  line-height:1.45;
 }
-.note .dot{
-  width:8px;height:8px;border-radius:50%;
-  background:rgba(255,255,255,.18);
-  box-shadow:0 0 0 3px rgba(255,255,255,.06);
-}
-.note.ok{color:var(--ok)}
-.note.ok .dot{background:var(--ok);box-shadow:0 0 0 3px rgba(34,197,94,.18)}
-.note.bad{color:var(--bad)}
-.note.bad .dot{background:var(--bad);box-shadow:0 0 0 3px rgba(239,68,68,.18)}
-.note.warn{color:var(--warn)}
-.note.warn .dot{background:var(--warn);box-shadow:0 0 0 3px rgba(245,158,11,.18)}
+.hr{height:1px;background:rgba(255,255,255,.10);margin-top:14px}
 
+/* Toast */
 .toast{
-  position:fixed;
-  left:50%;
-  transform:translateX(-50%);
-  bottom:calc(env(safe-area-inset-bottom) + 14px);
-  background:rgba(10,16,32,.92);
-  border:1px solid rgba(255,255,255,.12);
+  position:fixed; left:50%; transform:translateX(-50%);
+  bottom:calc(14px + env(safe-area-inset-bottom));
+  background:rgba(10,18,34,.92);
+  border:1px solid rgba(255,255,255,.14);
+  color:var(--text);
   padding:10px 12px;
   border-radius:12px;
+  font-weight:950;
   font-size:12px;
-  color:var(--text);
   display:none;
-  z-index:9999;
-  box-shadow:0 20px 40px rgba(0,0,0,.45);
+  z-index:5000;
+  box-shadow:0 16px 50px rgba(0,0,0,.5);
 }
 
-/* ===== Footer ===== */
+/* Footer */
 footer{
   border-top:1px solid rgba(255,255,255,.08);
-  padding:22px 0;
+  padding:24px 0;
+  margin-top:30px;
   color:var(--muted);
-  margin-top:18px;
 }
-.footerRow{
-  display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
-  align-items:flex-start;
+.footerGrid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:16px;
+  align-items:start;
 }
-.footerLinks{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-.footerLinks a{color:var(--text);text-decoration:none}
+.small{font-size:12px;line-height:1.55}
 
-/* ===== Print (optional) ===== */
-@media print{
-  header, .pill, .btn, .toolbar, .adminWrap, .toast, .backdrop, .modal {display:none !important}
-  body{background:#fff !important; color:#000 !important}
-  .card{box-shadow:none !important; border:1px solid #ddd !important; background:#fff !important}
+/* Mobile */
+@media(max-width:1000px){
+  .heroWrap{grid-template-columns:1fr}
+  .invGrid{grid-template-columns:repeat(2,1fr)}
+  .modalBody{grid-template-columns:1fr}
+  .gallery{border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}
+  .gMain{height:320px}
+  .formGrid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:640px){
+  .invGrid{grid-template-columns:1fr}
+  .heroStats{grid-template-columns:1fr}
+  .toolRow{grid-template-columns:1fr}
+  .menuBtn{display:inline-flex}
+  .nav{display:none; width:100%}
+  .nav.open{display:flex}
+  .header-inner{flex-wrap:wrap}
+  .brand{min-width:0}
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce){
+  *{scroll-behavior:auto !important}
 }
 </style>
 </head>
@@ -564,827 +475,649 @@ footer{
 <header>
   <div class="container header-inner">
     <div class="brand">
-      <img
-    src="assets/einstein-logo.png"
-    alt="https://github.com/twolittlebeesautoparts/pruevacarlot/blob/main/logo.png?raw=true"
-    style="height:48px; width:auto;"
-  >
-  <div>
+      <!-- Put your logo in GitHub at: /assets/einstein-logo.png -->
+      <img src="assets/einstein-logo.png" class="logo" alt="Einstein Auto Sales LLC Logo"
+           onerror="this.style.display='none';">
+      <div class="brandText">
         <h1>EINSTEIN AUTO SALES LLC</h1>
         <div class="sub">401 S Tibbs Ave • Indianapolis • (317) 492-9196</div>
       </div>
     </div>
 
-    <nav>
+    <button class="pill menuBtn" type="button" onclick="toggleMenu()">Menu</button>
+
+    <nav class="nav" id="nav">
       <a class="pill" href="#about">About Us</a>
       <a class="pill primary" href="#inventory">Inventory</a>
       <a class="pill" href="https://www.google.com/maps?q=401+S+Tibbs+Ave,+Indianapolis,+IN" target="_blank" rel="noopener">Get Directions</a>
       <a class="pill ghost" href="tel:3174929196">Call</a>
-      <a class="pill red" href="javascript:void(0)" onclick="openLogin()">Admin</a>
+      <button class="pill red" type="button" onclick="openLogin()">Admin</button>
     </nav>
   </div>
 </header>
 
-<main class="container">
-
-  <!-- HERO -->
+<main>
   <section class="hero">
-    <div>
-      <div class="badges">
-        <div class="badge blue"><span class="dot"></span> Clean Listings</div>
-        <div class="badge red"><span class="dot"></span> Transparent Details</div>
-        <div class="badge blue"><span class="dot"></span> Fast Support</div>
+    <div class="container heroWrap">
+      <div class="heroCard">
+        <div class="heroTitle">Modern Inventory.<br>Real Cars.<br>No Confusion.</div>
+        <div class="heroLead">
+          Browse our vehicles, view full specs, and call instantly.
+          Built for speed and clarity — like a top dealership.
+        </div>
+
+        <div class="heroBtns">
+          <a class="pill primary" href="#inventory">Browse Inventory</a>
+          <a class="pill ghost" href="tel:3174929196">Call (317) 492-9196</a>
+          <a class="pill" href="https://www.google.com/maps?q=401+S+Tibbs+Ave,+Indianapolis,+IN" target="_blank" rel="noopener">Directions</a>
+        </div>
+
+        <div class="heroStats">
+          <div class="stat"><b>Clean UI</b><span>Fast on mobile</span></div>
+          <div class="stat"><b>Photo-first</b><span>See the car</span></div>
+          <div class="stat"><b>Easy admin</b><span>Add inventory fast</span></div>
+        </div>
       </div>
 
-      <h2>Modern inventory.<br>Simple buying.<br>No stress.</h2>
-      <p>
-        EINSTEIN AUTO SALES LLC keeps listings clean and easy: photos, miles, color, powertrain, and more —
-        so you can move fast with confidence.
-      </p>
-
-      <div class="ctaRow">
-        <a class="btn primary" href="#inventory"><span class="icon">🚗</span> View Inventory</a>
-        <a class="btn red" href="tel:3174929196"><span class="icon">📞</span> Call (317) 492-9196</a>
-        <a class="btn" href="https://www.google.com/maps?q=401+S+Tibbs+Ave,+Indianapolis,+IN" target="_blank" rel="noopener"><span class="icon">📍</span> Get Directions</a>
-      </div>
-
-      <div class="stats">
-        <div class="stat"><b id="statCount">0</b><span>Vehicles listed</span></div>
-        <div class="stat"><b>Clean</b><span>Photos + specs</span></div>
-        <div class="stat"><b>Fast</b><span>Call or visit</span></div>
+      <div class="sideCard">
+        <div class="badge">📍 401 S Tibbs Ave</div>
+        <h3>Visit or call — quick response</h3>
+        <p>
+          EINSTEIN AUTO SALES LLC is focused on clean listings, honest info, and fast communication.
+        </p>
+        <div class="sideList">
+          <div class="sideItem"><div class="k">Phone</div><div class="v">(317) 492-9196</div></div>
+          <div class="sideItem"><div class="k">Directions</div><div class="v">Google Maps</div></div>
+          <div class="sideItem"><div class="k">Inventory</div><div class="v">Updated in admin</div></div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="card">
-      <div class="cardHead">
-        <div>
-          <h3>Quick Info</h3>
-          <div class="mini">Tap Admin to add cars and photos</div>
-        </div>
-        <span class="kbd">Public view • live updates</span>
+  <section id="about" class="section">
+    <div class="container">
+      <div class="card">
+        <h2>About Us</h2>
+        <p>
+          EINSTEIN AUTO SALES LLC is built on clear listings and fast communication.
+          Our goal is simple: show the details up front, answer calls quickly, and make buying easier.
+        </p>
       </div>
-      <hr class="hr">
-      <div class="grid2">
-        <div>
-          <div class="mini">Address</div>
-          <div style="font-weight:950;margin-top:6px">401 S Tibbs Ave, Indianapolis, IN</div>
-          <div class="mini" style="margin-top:10px">Phone</div>
-          <div style="font-weight:950;margin-top:6px">(317) 492-9196</div>
-        </div>
-        <div>
-          <div class="mini">Hours</div>
-          <div style="font-weight:950;margin-top:6px">Call for availability</div>
-          <div class="mini" style="margin-top:10px">Notes</div>
-          <div style="color:var(--muted);font-weight:850;margin-top:6px;line-height:1.5">
-            Listings are managed by admin on this page. No backend required.
+    </div>
+  </section>
+
+  <section id="inventory" class="section">
+    <div class="container">
+      <div class="card">
+        <h2>Inventory</h2>
+
+        <div class="tools">
+          <div class="toolRow">
+            <input class="input" id="q" placeholder="Search: year, make, model, color, VIN, stock…" oninput="renderInventory()">
+            <select id="sort" onchange="renderInventory()">
+              <option value="newest">Sort: Newest</option>
+              <option value="priceAsc">Price: Low → High</option>
+              <option value="priceDesc">Price: High → Low</option>
+              <option value="milesAsc">Miles: Low → High</option>
+              <option value="milesDesc">Miles: High → Low</option>
+            </select>
+            <select id="filter" onchange="renderInventory()">
+              <option value="all">Filter: All</option>
+              <option value="available">Available</option>
+              <option value="sold">Sold</option>
+            </select>
           </div>
         </div>
+
+        <div class="help" id="invHint"></div>
+        <div class="invGrid" id="invGrid"></div>
+
+        <!-- Admin bar -->
+        <div class="adminBar" id="adminBar">
+          <div class="hr"></div>
+          <h2 style="margin-top:14px">Admin Panel</h2>
+          <div class="help">
+            Add vehicles with photos. This version stores data in your browser (works on GitHub Pages). For global saving for everyone, we can connect Firebase later.
+          </div>
+
+          <div class="formGrid">
+            <input id="status" class="input" placeholder="Status: Available / Sold (default Available)">
+            <input id="year" class="input" placeholder="Year (e.g. 2017)">
+            <input id="make" class="input" placeholder="Make">
+            <input id="model" class="input" placeholder="Model">
+            <input id="trim" class="input" placeholder="Trim">
+            <input id="price" class="input" placeholder="Price (e.g. 12995)">
+            <input id="miles" class="input" placeholder="Miles (e.g. 88420)">
+            <input id="color" class="input" placeholder="Color">
+            <input id="engine" class="input" placeholder="Engine (e.g. 2.4L I4)">
+            <input id="trans" class="input" placeholder="Transmission">
+            <input id="drive" class="input" placeholder="Drivetrain">
+            <input id="stock" class="input" placeholder="Stock #">
+            <input id="vin" class="input wide" placeholder="VIN (optional)">
+            <input id="photos" class="input wide" type="file" accept="image/*" multiple>
+            <textarea id="notes" class="input full" rows="3" placeholder="Notes (condition, features, warranty, etc.)"></textarea>
+          </div>
+
+          <div class="adminActions">
+            <button class="pill primary" type="button" onclick="saveVehicle()">Save Vehicle</button>
+            <button class="pill" type="button" onclick="clearForm()">Clear Form</button>
+            <button class="pill red" type="button" onclick="adminLogout()">Log out</button>
+          </div>
+
+          <div class="help" id="adminMsg"></div>
+        </div>
       </div>
     </div>
   </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="section">
-    <div class="card">
-      <div class="cardHead">
-        <div>
-          <h3>About Us</h3>
-          <div class="mini">Professional, straightforward car sales</div>
-        </div>
-      </div>
-      <hr class="hr">
-      <p style="color:var(--muted);font-weight:850;line-height:1.65">
-        EINSTEIN AUTO SALES LLC focuses on clean listings and clear communication.
-        We keep the basics up front — miles, powertrain, and condition — and we’re easy to reach.
-        Visit us at 401 S Tibbs Ave in Indianapolis or call (317) 492-9196.
-      </p>
-    </div>
-  </section>
-
-  <!-- INVENTORY -->
-  <section id="inventory" class="section">
-    <div class="card">
-      <div class="cardHead">
-        <div>
-          <h3>Inventory</h3>
-          <div class="mini" id="invMeta">0 vehicles</div>
-        </div>
-        <span class="kbd" id="adminBadge" style="display:none">Admin mode</span>
-      </div>
-
-      <div class="toolbar">
-        <input class="search" id="q" placeholder="Search year, make, model, miles, color, engine, transmission…" oninput="applyFilters()">
-        <select id="sort" onchange="applyFilters()">
-          <option value="newest">Sort: Newest</option>
-          <option value="priceAsc">Sort: Price (Low → High)</option>
-          <option value="priceDesc">Sort: Price (High → Low)</option>
-          <option value="milesAsc">Sort: Miles (Low → High)</option>
-          <option value="yearDesc">Sort: Year (High → Low)</option>
-          <option value="makeAsc">Sort: Make (A → Z)</option>
-        </select>
-        <button class="pill ghost" type="button" onclick="clearSearch()">Clear</button>
-      </div>
-
-      <div class="invGrid" id="invGrid"></div>
-
-      <div id="invMsg" class="note"><span class="dot"></span><span id="invMsgText">Loading…</span></div>
-    </div>
-  </section>
-
-  <!-- ADMIN -->
-  <section id="admin" class="section adminWrap">
-    <div class="card">
-      <div class="cardHead">
-        <div>
-          <h3>Admin Panel</h3>
-          <div class="mini">Add vehicles, photos, and full specs</div>
-        </div>
-        <button class="pill red" type="button" onclick="logout()">Logout</button>
-      </div>
-
-      <hr class="hr">
-
-      <div class="adminGrid">
-        <input id="year" placeholder="Year (e.g. 2018)" inputmode="numeric">
-        <input id="make" placeholder="Make (e.g. Honda)">
-        <input id="model" placeholder="Model (e.g. Accord)">
-        <input id="trim" placeholder="Trim (optional)">
-        <input id="color" placeholder="Color (e.g. Black)">
-        <input id="miles" placeholder="Miles (e.g. 89500)" inputmode="numeric">
-        <input id="engine" placeholder="Engine (e.g. 2.4L I4)">
-        <input id="trans" placeholder="Transmission (Auto / Manual / CVT)">
-        <input id="drivetrain" placeholder="Drivetrain (FWD / RWD / AWD)">
-        <input id="motorSize" placeholder="Motor Size (optional)">
-        <input id="stock" placeholder="Stock # (optional)">
-        <input id="vin" placeholder="VIN (optional)" maxlength="17">
-
-        <input id="price" class="full" placeholder="Price (optional) e.g. 10995" inputmode="numeric">
-        <textarea id="notes" class="full" rows="3" placeholder="Notes / Condition / Highlights (optional)"></textarea>
-
-        <div class="full fileRow">
-          <input id="photos" type="file" accept="image/*" multiple>
-          <div class="fileInfo" id="photoInfo">Add 1–10 photos (jpg/png/webp). Tip: keep under ~1MB each for speed.</div>
-        </div>
-      </div>
-
-      <div class="previewGrid" id="previewGrid"></div>
-
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-        <button class="smallBtn primary" id="saveBtn" type="button" onclick="saveVehicle()">Save Vehicle</button>
-        <button class="smallBtn" type="button" onclick="clearForm()">Clear Form</button>
-      </div>
-
-      <div id="adminMsg" class="note"><span class="dot"></span><span id="adminMsgText"></span></div>
-
-      <hr class="hr">
-
-      <div class="mini" style="line-height:1.55">
-        <b>Important:</b> This is a single-file “no backend” admin using localStorage.
-        If you clear browser data or use a different device, inventory won’t carry over.
-        If you want multi-device + real security, the next upgrade is Firebase Auth + Storage.
-      </div>
-    </div>
-  </section>
-
 </main>
 
 <footer>
-  <div class="container">
-    <div class="footerRow">
-      <div>© 2026 EINSTEIN AUTO SALES LLC</div>
-      <div>
-        <a href="tel:3174929196" style="text-decoration:none">📞 (317) 492-9196</a> &nbsp;•&nbsp;
-        <a href="https://www.google.com/maps?q=401+S+Tibbs+Ave,+Indianapolis,+IN" target="_blank" rel="noopener" style="text-decoration:none">📍 401 S Tibbs Ave</a>
-      </div>
+  <div class="container footerGrid">
+    <div class="small">
+      <b style="color:#fff">EINSTEIN AUTO SALES LLC</b><br>
+      401 S Tibbs Ave • Indianapolis, IN<br>
+      Phone: (317) 492-9196<br><br>
+      <span style="color:var(--muted)">© 2026 EINSTEIN AUTO SALES LLC</span>
     </div>
-    <div class="footerLinks">
-      <a class="pill" href="#about">About</a>
-      <a class="pill primary" href="#inventory">Inventory</a>
-      <a class="pill" href="https://www.google.com/maps?q=401+S+Tibbs+Ave,+Indianapolis,+IN" target="_blank" rel="noopener">Directions</a>
-      <a class="pill ghost" href="tel:3174929196">Call</a>
+    <div class="small">
+      <b style="color:#fff">Quick Links</b><br>
+      <a class="pill ghost" href="#inventory" style="display:inline-flex;margin-top:10px">Inventory</a>
+      <a class="pill ghost" href="https://www.google.com/maps?q=401+S+Tibbs+Ave,+Indianapolis,+IN" target="_blank" rel="noopener" style="display:inline-flex;margin-top:10px">Directions</a>
+      <a class="pill ghost" href="tel:3174929196" style="display:inline-flex;margin-top:10px">Call</a>
     </div>
   </div>
 </footer>
 
-<!-- Login Modal -->
-<div class="backdrop" id="loginBackdrop" onclick="closeLogin()"></div>
-<div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-label="Admin Login">
-  <div class="modalInner">
-    <div class="modalHead">
-      <div>
-        <div class="modalTitle">Admin Login</div>
-        <div class="mini">Authorized access only</div>
+<!-- Vehicle modal -->
+<div class="modalWrap" id="modalWrap" onclick="if(event.target===this) closeModal()">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modalTop">
+      <b id="mTitle">Vehicle</b>
+      <button class="modalClose" type="button" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modalBody">
+      <div class="gallery">
+        <div class="gMain" id="gMain"></div>
+        <div class="gThumbs" id="gThumbs"></div>
       </div>
-      <button class="modalClose" type="button" onclick="closeLogin()">Close</button>
+      <div class="details">
+        <div class="dTitle" id="dTitle">—</div>
+        <div class="dSub" id="dSub">—</div>
+
+        <div class="dGrid" id="dGrid"></div>
+
+        <div class="modalBtns">
+          <a class="pill primary" href="tel:3174929196">Call Now</a>
+          <a class="pill" href="https://www.google.com/maps?q=401+S+Tibbs+Ave,+Indianapolis,+IN" target="_blank" rel="noopener">Directions</a>
+        </div>
+
+        <div class="noteBox" id="dNotes" style="display:none"></div>
+
+        <div class="adminActions" id="modalAdmin" style="display:none;margin-top:14px">
+          <button class="pill" type="button" onclick="editVehicle()">Edit</button>
+          <button class="pill red" type="button" onclick="deleteVehicle()">Delete</button>
+        </div>
+      </div>
     </div>
-    <hr class="hr">
-    <div class="grid2">
-      <input id="u" placeholder="Username" autocomplete="username">
-      <input id="p" type="password" placeholder="Password" autocomplete="current-password">
-    </div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-      <button class="smallBtn primary" type="button" onclick="login()">Login</button>
-      <button class="smallBtn" type="button" onclick="closeLogin()">Cancel</button>
-    </div>
-    <div id="loginMsg" class="note"><span class="dot"></span><span id="loginMsgText"></span></div>
   </div>
 </div>
 
-<!-- Vehicle Modal -->
-<div class="backdrop" id="vehBackdrop" onclick="closeVehicle()"></div>
-<div class="modal" id="vehModal" role="dialog" aria-modal="true" aria-label="Vehicle Details">
-  <div class="modalInner" id="vehModalInner"></div>
+<!-- Admin Login modal (simple) -->
+<div class="modalWrap" id="loginWrap" onclick="if(event.target===this) closeLogin()">
+  <div class="modal" style="max-width:520px;margin:80px auto" role="dialog" aria-modal="true">
+    <div class="modalTop">
+      <b>Admin Login</b>
+      <button class="modalClose" type="button" onclick="closeLogin()">✕</button>
+    </div>
+    <div class="details" style="padding:16px">
+      <div class="help">Enter credentials to manage inventory.</div>
+      <div class="grid" style="margin-top:12px">
+        <input id="u" class="input" placeholder="Username">
+        <input id="p" class="input" placeholder="Password" type="password">
+        <button class="pill red" type="button" onclick="adminLogin()">Login</button>
+        <div class="help" id="loginMsg"></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-/* =========================================================
-   EINSTEIN AUTO SALES LLC — Single-file Inventory System
-   - Public inventory view
-   - Admin login (local-only)
-   - Add vehicles with photos (stored in localStorage as data URLs)
-   - View details modal, copy VIN, call, directions
-   - Delete/edit supported in admin mode (edit loads into form)
-========================================================= */
-
-/* ====== Credentials (front-end only) ======
-   NOTE: Since this is front-end, creds are visible in page source.
-   True security requires server-side auth + rules.
-*/
+/* =========================
+   CONFIG
+========================= */
+const PHONE = "3174929196";
 const ADMIN_USER = "superjavi";
 const ADMIN_PASS = "1520";
+const STORE_KEY = "einstein_inventory_v1";
+const ADMIN_KEY = "einstein_admin_session";
 
-const STORAGE_KEY = "einstein_inventory_v1";
-const ADMIN_KEY = "einstein_admin_v1";
+/* =========================
+   STATE
+========================= */
+let isAdmin = sessionStorage.getItem(ADMIN_KEY) === "1";
+let inventory = loadInventory();
+let currentId = null; // selected vehicle for modal
 
-let isAdmin = false;
-let vehicles = []; // {id, createdAt, year, make, model, ... , photos:[dataUrl], ...}
-let editId = null;
-let pendingPhotos = []; // dataUrl previews for new/edit
-
-/* ====== DOM ====== */
-const invGrid = document.getElementById("invGrid");
-const invMeta = document.getElementById("invMeta");
-const statCount = document.getElementById("statCount");
-const invMsg = document.getElementById("invMsg");
-const invMsgText = document.getElementById("invMsgText");
-
-const adminSection = document.getElementById("admin");
-const adminBadge = document.getElementById("adminBadge");
-
-const toast = document.getElementById("toast");
-
-const loginBackdrop = document.getElementById("loginBackdrop");
-const loginModal = document.getElementById("loginModal");
-const loginMsg = document.getElementById("loginMsg");
-const loginMsgText = document.getElementById("loginMsgText");
-
-const vehBackdrop = document.getElementById("vehBackdrop");
-const vehModal = document.getElementById("vehModal");
-const vehModalInner = document.getElementById("vehModalInner");
-
-const qEl = document.getElementById("q");
-const sortEl = document.getElementById("sort");
-
-/* Admin inputs */
-const el = (id)=>document.getElementById(id);
-const previewGrid = el("previewGrid");
-const photosInput = el("photos");
-const saveBtn = el("saveBtn");
-const adminMsg = el("adminMsg");
-const adminMsgText = el("adminMsgText");
-
-/* ====== Utils ====== */
-function esc(s){
-  return String(s ?? "").replace(/[&<>"']/g, m => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
-  }[m]));
+/* =========================
+   UTIL
+========================= */
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s ?? "").replace(/[&<>"']/g,m=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[m])); }
+function toast(msg="Saved"){
+  const t = $("toast");
+  t.textContent = msg;
+  t.style.display = "block";
+  clearTimeout(toast._t);
+  toast._t = setTimeout(()=>t.style.display="none", 950);
 }
-function clean(s){ return String(s ?? "").trim(); }
-function upper(s){ return clean(s).toUpperCase(); }
-function num(s){ const n = parseFloat(String(s ?? "").replace(/[^0-9.]/g,"")); return isNaN(n) ? null : n; }
-function intNum(s){ const n = parseInt(String(s ?? "").replace(/[^0-9]/g,""),10); return isNaN(n) ? null : n; }
+function money(n){
+  const x = Number(String(n||"").replace(/[^0-9.]/g,""));
+  if(!isFinite(x) || x<=0) return "";
+  return "$" + x.toLocaleString();
+}
+function miles(n){
+  const x = Number(String(n||"").replace(/[^0-9]/g,""));
+  if(!isFinite(x) || x<=0) return "";
+  return x.toLocaleString() + " mi";
+}
 
-function setNote(node, textNode, msg, type=""){
-  textNode.textContent = msg || "";
-  node.className = "note" + (type ? " " + type : "");
+/* =========================
+   MENU
+========================= */
+function toggleMenu(){
+  $("nav").classList.toggle("open");
 }
-function showToast(msg){
-  toast.textContent = msg;
-  toast.style.display = "block";
-  clearTimeout(showToast._t);
-  showToast._t = setTimeout(()=> toast.style.display="none", 900);
-}
-async function copyText(t){
+
+/* =========================
+   STORAGE
+========================= */
+function loadInventory(){
   try{
-    await navigator.clipboard.writeText(t);
-    showToast("Copied");
+    const raw = localStorage.getItem(STORE_KEY);
+    const arr = raw ? JSON.parse(raw) : [];
+    return Array.isArray(arr) ? arr : [];
   }catch{
-    const ta = document.createElement("textarea");
-    ta.value = t;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand("copy");
-    ta.remove();
-    showToast("Copied");
+    return [];
   }
 }
-function uid(){
-  return "v_" + Math.random().toString(36).slice(2) + Date.now().toString(36);
+function saveInventory(){
+  localStorage.setItem(STORE_KEY, JSON.stringify(inventory));
 }
 
-/* ====== Storage ====== */
-function load(){
-  try{
-    const raw = localStorage.getItem(STORAGE_KEY);
-    vehicles = raw ? JSON.parse(raw) : [];
-    if(!Array.isArray(vehicles)) vehicles = [];
-  }catch{ vehicles = []; }
+/* =========================
+   INVENTORY RENDER
+========================= */
+function renderInventory(){
+  const grid = $("invGrid");
+  const q = ($("q")?.value || "").trim().toLowerCase();
+  const sort = $("sort")?.value || "newest";
+  const filter = $("filter")?.value || "all";
 
-  isAdmin = localStorage.getItem(ADMIN_KEY) === "1";
-  updateAdminUI();
-  render();
-}
-function save(){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(vehicles));
-}
+  let list = [...inventory];
 
-/* ====== Admin UI ====== */
-function updateAdminUI(){
-  adminSection.style.display = isAdmin ? "block" : "none";
-  adminBadge.style.display = isAdmin ? "inline-block" : "none";
-}
-function openLogin(){
-  setNote(loginMsg, loginMsgText, "", "");
-  loginBackdrop.style.display = "block";
-  loginModal.style.display = "block";
-  setTimeout(()=> el("u").focus(), 80);
-}
-function closeLogin(){
-  loginBackdrop.style.display = "none";
-  loginModal.style.display = "none";
-}
-function login(){
-  const u = clean(el("u").value);
-  const p = clean(el("p").value);
-  if(u === ADMIN_USER && p === ADMIN_PASS){
-    isAdmin = true;
-    localStorage.setItem(ADMIN_KEY, "1");
-    updateAdminUI();
-    closeLogin();
-    showToast("Admin enabled");
-    // jump to admin section
-    location.hash = "#admin";
-  }else{
-    setNote(loginMsg, loginMsgText, "Invalid login.", "bad");
+  // filter
+  if(filter !== "all"){
+    list = list.filter(v => (v.status || "Available").toLowerCase() === filter);
   }
-}
-function logout(){
-  isAdmin = false;
-  localStorage.setItem(ADMIN_KEY, "0");
-  updateAdminUI();
-  showToast("Admin disabled");
-  clearForm();
-}
 
-/* ====== Inventory render ====== */
-function applyFilters(){
-  const q = clean(qEl.value).toLowerCase();
-  const sort = sortEl.value;
-
-  let list = vehicles.slice();
-
+  // search
   if(q){
     list = list.filter(v=>{
-      const blob = [
-        v.year, v.make, v.model, v.trim, v.color, v.miles, v.engine, v.motorSize,
-        v.trans, v.drivetrain, v.vin, v.stock, v.price, v.notes
-      ].map(x=>String(x||"").toLowerCase()).join(" ");
-      return blob.includes(q);
+      const hay = [
+        v.year, v.make, v.model, v.trim, v.color, v.miles,
+        v.engine, v.trans, v.drive, v.price, v.stock, v.vin,
+        v.status, v.notes
+      ].join(" ").toLowerCase();
+      return hay.includes(q);
     });
   }
 
+  // sort
+  const num = (x)=> Number(String(x||"").replace(/[^0-9.]/g,"")) || 0;
   list.sort((a,b)=>{
-    const at = a.createdAt || 0;
-    const bt = b.createdAt || 0;
-
-    const ap = a.price ?? null;
-    const bp = b.price ?? null;
-
-    const am = a.miles ?? null;
-    const bm = b.miles ?? null;
-
-    const ay = a.year ?? 0;
-    const by = b.year ?? 0;
-
-    if(sort === "newest") return bt - at;
-    if(sort === "priceAsc") return (ap ?? 1e15) - (bp ?? 1e15);
-    if(sort === "priceDesc") return (bp ?? -1) - (ap ?? -1);
-    if(sort === "milesAsc") return (am ?? 1e15) - (bm ?? 1e15);
-    if(sort === "yearDesc") return by - ay;
-    if(sort === "makeAsc") return String(a.make||"").localeCompare(String(b.make||""));
-    return bt - at;
+    if(sort==="priceAsc") return num(a.price)-num(b.price);
+    if(sort==="priceDesc") return num(b.price)-num(a.price);
+    if(sort==="milesAsc") return num(a.miles)-num(b.miles);
+    if(sort==="milesDesc") return num(b.miles)-num(a.miles);
+    // newest default
+    return (b.createdAt||0)-(a.createdAt||0);
   });
 
-  render(list);
-}
+  $("invHint").textContent =
+    list.length ? `${list.length} vehicle(s) shown.` :
+    `No vehicles yet. ${isAdmin ? "Add one in Admin Panel." : ""}`;
 
-function formatMoney(n){
-  if(n === null || n === undefined) return "";
-  const x = Number(n);
-  if(!isFinite(x)) return "";
-  return "$" + x.toLocaleString("en-US", {maximumFractionDigits:0});
-}
-function formatMiles(n){
-  if(n === null || n === undefined) return "";
-  const x = Number(n);
-  if(!isFinite(x)) return "";
-  return x.toLocaleString("en-US") + " miles";
-}
-
-function render(list = vehicles){
-  // meta
-  const count = vehicles.length;
-  statCount.textContent = String(count);
-  invMeta.textContent = `${list.length} vehicle${list.length===1?"":"s"}`;
-  setNote(invMsg, invMsgText, list.length ? "Tap a vehicle for details." : "No vehicles yet. Admin can add inventory.", list.length ? "" : "warn");
-
-  invGrid.innerHTML = "";
-
+  grid.innerHTML = "";
   list.forEach(v=>{
-    const title = `${v.year ?? ""} ${v.make ?? ""} ${v.model ?? ""}`.trim() || "Vehicle";
-    const metaLine = [
-      v.color ? v.color : null,
-      v.miles != null ? formatMiles(v.miles) : null,
-      v.engine ? v.engine : null
-    ].filter(Boolean).join(" · ");
+    const title = `${v.year||""} ${v.make||""} ${v.model||""}`.trim() || "Vehicle";
+    const meta = [
+      v.color ? v.color : "",
+      v.engine ? v.engine : "",
+      v.trans ? v.trans : "",
+      v.drive ? v.drive : ""
+    ].filter(Boolean).join(" • ");
 
-    const t1 = v.trans ? `<span class="tag blue">${esc(v.trans)}</span>` : "";
-    const t2 = v.drivetrain ? `<span class="tag">${esc(v.drivetrain)}</span>` : "";
-    const t3 = v.price != null ? `<span class="tag red">${esc(formatMoney(v.price))}</span>` : "";
+    const cover = (v.photos && v.photos.length) ? v.photos[0] : "";
+    const tPrice = v.price ? `<span class="tag">Price</span>` : "";
+    const tMiles = v.miles ? `<span class="tag">Miles</span>` : "";
+    const tStatus = `<span class="tag">${esc((v.status||"Available").toUpperCase())}</span>`;
+    const tVin = v.vin ? `<span class="tag">VIN</span>` : "";
+    const priceBadge = v.price ? `<div class="priceBadge">${esc(money(v.price))}</div>` : "";
+    const milesBadge = v.miles ? `<div class="milesBadge">${esc(miles(v.miles))}</div>` : "";
 
-    const cover = (v.photos && v.photos[0]) ? v.photos[0] : null;
-
-    invGrid.insertAdjacentHTML("beforeend", `
+    grid.insertAdjacentHTML("beforeend", `
       <div class="vehicleCard">
-        <div class="thumb" onclick="openVehicle('${v.id}')">
+        <div class="thumb" onclick="openVehicle('${esc(v.id)}')">
+          ${priceBadge}${milesBadge}
           ${cover ? `<img src="${esc(cover)}" alt="${esc(title)}">` : `<div class="noimg">No photo</div>`}
         </div>
         <div class="vBody">
-          <div class="vTitle">${esc(title)} ${v.trim ? `<span style="color:var(--muted);font-weight:900">• ${esc(v.trim)}</span>` : ""}</div>
-          <div class="vMeta">${esc(metaLine || "Details available")}</div>
+          <div class="vTitle">${esc(title)}${v.trim ? ` <span style="color:var(--muted);font-weight:950">• ${esc(v.trim)}</span>` : ""}</div>
+          <div class="vMeta">${esc(meta || "Details available")}</div>
           <div class="tags">
-            ${t3}${t1}${t2}
-            ${v.vin ? `<span class="tag">VIN</span>` : ``}
+            ${tStatus}${tPrice}${tMiles}${tVin}
           </div>
         </div>
         <div class="vActions">
-          <button class="smallBtn primary" type="button" onclick="openVehicle('${v.id}')">Details</button>
-          ${isAdmin ? `<button class="smallBtn danger" type="button" onclick="adminMenu('${v.id}')">Manage</button>` : `<button class="smallBtn" type="button" onclick="callNow()">Call</button>`}
+          <button class="smallBtn primary" type="button" onclick="openVehicle('${esc(v.id)}')">Details</button>
+          ${isAdmin
+            ? `<button class="smallBtn danger" type="button" onclick="openVehicle('${esc(v.id)}'); setTimeout(()=>scrollToAdminButtons(), 50)">Manage</button>`
+            : `<button class="smallBtn" type="button" onclick="callNow()">Call</button>`
+          }
         </div>
       </div>
     `);
   });
 }
 
-/* ===== Vehicle modal ===== */
+function callNow(){
+  location.href = "tel:" + PHONE;
+}
+
+/* =========================
+   VEHICLE MODAL
+========================= */
 function openVehicle(id){
-  const v = vehicles.find(x=>x.id===id);
+  const v = inventory.find(x=>x.id===id);
   if(!v) return;
 
-  const title = `${v.year ?? ""} ${v.make ?? ""} ${v.model ?? ""}`.trim() || "Vehicle";
-  const price = v.price != null ? formatMoney(v.price) : "";
-  const miles = v.miles != null ? formatMiles(v.miles) : "";
-  const vin = v.vin ? String(v.vin) : "";
-  const photos = Array.isArray(v.photos) ? v.photos : [];
+  currentId = id;
+  $("modalWrap").style.display = "block";
 
-  const first = photos[0] || "";
-  const thumbs = photos.map((p,i)=>`
-    <img src="${esc(p)}" alt="Photo ${i+1}" class="${i===0?"active":""}" onclick="swapPhoto(this,'${esc(p)}')">
-  `).join("");
-
-  const highlights = [
-    v.color ? `Color: ${v.color}` : null,
-    miles ? `Mileage: ${miles}` : null,
-    v.engine ? `Engine: ${v.engine}` : null,
-    v.motorSize ? `Motor Size: ${v.motorSize}` : null,
-    v.trans ? `Transmission: ${v.trans}` : null,
-    v.drivetrain ? `Drivetrain: ${v.drivetrain}` : null,
-    v.stock ? `Stock #: ${v.stock}` : null
+  const title = `${v.year||""} ${v.make||""} ${v.model||""}`.trim() || "Vehicle";
+  $("mTitle").textContent = title;
+  $("dTitle").textContent = title + (v.trim ? " • " + v.trim : "");
+  $("dSub").textContent = [
+    v.status ? v.status : "Available",
+    v.stock ? "Stock " + v.stock : "",
+    v.vin ? "VIN " + v.vin : ""
   ].filter(Boolean).join(" • ");
 
-  vehModalInner.innerHTML = `
-    <div class="modalHead">
-      <div>
-        <div class="modalTitle">${esc(title)}</div>
-        <div class="mini">${esc(highlights || "Full details below")}</div>
-      </div>
-      <button class="modalClose" type="button" onclick="closeVehicle()">Close</button>
+  // gallery
+  const photos = (v.photos && v.photos.length) ? v.photos : [];
+  renderGallery(photos);
+
+  // details grid
+  const items = [
+    ["Price", money(v.price)],
+    ["Miles", miles(v.miles)],
+    ["Color", v.color],
+    ["Engine", v.engine],
+    ["Transmission", v.trans],
+    ["Drivetrain", v.drive]
+  ];
+  $("dGrid").innerHTML = items.map(([k,val])=>`
+    <div class="dItem">
+      <div class="k">${esc(k)}</div>
+      <div class="v">${esc(val || "—")}</div>
     </div>
+  `).join("");
 
-    <div class="modalGrid">
-      <div class="gallery">
-        <div class="galleryTop" id="galleryTop">
-          ${first ? `<img id="bigPhoto" src="${esc(first)}" alt="${esc(title)}">` : `<div class="noimg" style="height:100%">No photo</div>`}
-        </div>
-        <div class="galleryThumbs">
-          ${thumbs || `<span class="mini" style="padding:8px 10px">No photos uploaded.</span>`}
-        </div>
-      </div>
-
-      <div class="detail">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
-          <div style="font-weight:950;font-size:1.15rem">${price ? esc(price) : "Call for price"}</div>
-          <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <button class="smallBtn primary" type="button" onclick="callNow()">Call</button>
-            <button class="smallBtn" type="button" onclick="directions()">Directions</button>
-          </div>
-        </div>
-
-        <div class="line">${esc(miles || "")}</div>
-
-        <div class="kv">
-          <div class="kvItem"><div class="k">Year</div><div class="v">${esc(v.year ?? "—")}</div></div>
-          <div class="kvItem"><div class="k">Make</div><div class="v">${esc(v.make ?? "—")}</div></div>
-          <div class="kvItem"><div class="k">Model</div><div class="v">${esc(v.model ?? "—")}</div></div>
-          <div class="kvItem"><div class="k">Trim</div><div class="v">${esc(v.trim || "—")}</div></div>
-          <div class="kvItem"><div class="k">Color</div><div class="v">${esc(v.color || "—")}</div></div>
-          <div class="kvItem"><div class="k">Engine</div><div class="v">${esc(v.engine || "—")}</div></div>
-          <div class="kvItem"><div class="k">Transmission</div><div class="v">${esc(v.trans || "—")}</div></div>
-          <div class="kvItem"><div class="k">Drivetrain</div><div class="v">${esc(v.drivetrain || "—")}</div></div>
-          <div class="kvItem"><div class="k">Miles</div><div class="v">${esc(v.miles != null ? formatMiles(v.miles) : "—")}</div></div>
-          <div class="kvItem"><div class="k">VIN</div>
-            <div class="v">
-              ${vin ? `${esc(vin)} <span style="opacity:.7">•</span> <a href="javascript:void(0)" onclick="copyText('${esc(vin)}')" style="text-decoration:none;color:var(--blue)">Copy</a>` : "—"}
-            </div>
-          </div>
-          <div class="kvItem"><div class="k">Stock #</div><div class="v">${esc(v.stock || "—")}</div></div>
-        </div>
-
-        ${v.notes ? `<div class="line" style="margin-top:12px"><b style="color:var(--text)">Notes:</b> ${esc(v.notes)}</div>` : ``}
-
-        ${isAdmin ? `
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-            <button class="smallBtn" type="button" onclick="loadForEdit('${v.id}')">Edit</button>
-            <button class="smallBtn danger" type="button" onclick="deleteVehicle('${v.id}')">Delete</button>
-          </div>
-        ` : ``}
-      </div>
-    </div>
-  `;
-
-  vehBackdrop.style.display = "block";
-  vehModal.style.display = "block";
-}
-
-function swapPhoto(imgEl, src){
-  const big = document.getElementById("bigPhoto");
-  if(!big) return;
-  big.src = src;
-
-  // active highlight
-  document.querySelectorAll(".galleryThumbs img").forEach(i=>i.classList.remove("active"));
-  imgEl.classList.add("active");
-}
-
-function closeVehicle(){
-  vehBackdrop.style.display = "none";
-  vehModal.style.display = "none";
-  vehModalInner.innerHTML = "";
-}
-
-/* ===== Directions + Call ===== */
-function directions(){
-  window.open("https://www.google.com/maps?q=401+S+Tibbs+Ave,+Indianapolis,+IN", "_blank", "noopener");
-}
-function callNow(){
-  window.location.href = "tel:3174929196";
-}
-
-/* ===== Admin: add/edit/delete ===== */
-photosInput.addEventListener("change", async ()=>{
-  // limit to 10 photos
-  const files = Array.from(photosInput.files || []).slice(0,10);
-  pendingPhotos = [];
-
-  if(!files.length){
-    renderPhotoPreviews();
-    return;
+  // notes
+  if(v.notes && v.notes.trim()){
+    $("dNotes").style.display = "block";
+    $("dNotes").textContent = v.notes;
+  }else{
+    $("dNotes").style.display = "none";
   }
 
-  setAdminNote("Loading photos…", "");
+  // admin buttons
+  $("modalAdmin").style.display = isAdmin ? "flex" : "none";
+}
 
-  try{
-    for(const f of files){
-      const dataUrl = await fileToDataURL(f);
-      pendingPhotos.push(dataUrl);
-    }
-    setAdminNote(`${pendingPhotos.length} photo(s) ready.`, "ok");
-  }catch{
-    pendingPhotos = [];
-    setAdminNote("Photo load failed. Try smaller images.", "bad");
-  }
+function renderGallery(photos){
+  const main = $("gMain");
+  const thumbs = $("gThumbs");
+  main.innerHTML = photos.length ? `<img src="${esc(photos[0])}" alt="Photo">` : `<div class="noimg" style="height:360px">No photos</div>`;
+  thumbs.innerHTML = "";
 
-  renderPhotoPreviews();
-});
+  photos.forEach((src, idx)=>{
+    thumbs.insertAdjacentHTML("beforeend", `<img src="${esc(src)}" alt="Thumb" ${idx===0?'class="active"':''} onclick="setMainPhoto(${idx})">`);
+  });
 
-function fileToDataURL(file){
-  return new Promise((resolve,reject)=>{
-    const r = new FileReader();
-    r.onload = ()=> resolve(String(r.result || ""));
-    r.onerror = reject;
-    r.readAsDataURL(file);
+  // store current photo set on element
+  thumbs._photos = photos;
+}
+
+function setMainPhoto(idx){
+  const photos = $("gThumbs")._photos || [];
+  if(!photos[idx]) return;
+  $("gMain").innerHTML = `<img src="${esc(photos[idx])}" alt="Photo">`;
+  Array.from($("gThumbs").querySelectorAll("img")).forEach((im,i)=>{
+    im.classList.toggle("active", i===idx);
   });
 }
 
-function renderPhotoPreviews(){
-  previewGrid.innerHTML = "";
-  if(!pendingPhotos.length){
-    previewGrid.innerHTML = `<div class="mini">No photos selected.</div>`;
-    return;
+function closeModal(){
+  $("modalWrap").style.display = "none";
+  currentId = null;
+}
+
+function scrollToAdminButtons(){
+  const el = $("modalAdmin");
+  if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+/* =========================
+   ADMIN LOGIN
+========================= */
+function openLogin(){ $("loginWrap").style.display="block"; $("loginMsg").textContent=""; }
+function closeLogin(){ $("loginWrap").style.display="none"; }
+
+function adminLogin(){
+  const u = ($("u").value||"").trim();
+  const p = ($("p").value||"").trim();
+  if(u===ADMIN_USER && p===ADMIN_PASS){
+    isAdmin = true;
+    sessionStorage.setItem(ADMIN_KEY, "1");
+    $("loginWrap").style.display = "none";
+    $("u").value=""; $("p").value="";
+    showAdminUI();
+    toast("Admin ON");
+  }else{
+    $("loginMsg").textContent = "Invalid login.";
   }
-  pendingPhotos.forEach((src, idx)=>{
-    previewGrid.insertAdjacentHTML("beforeend", `
-      <div class="pv">
-        <img src="${esc(src)}" alt="Preview ${idx+1}">
-        <button type="button" onclick="removePendingPhoto(${idx})">×</button>
-      </div>
-    `);
-  });
-}
-function removePendingPhoto(idx){
-  pendingPhotos.splice(idx,1);
-  renderPhotoPreviews();
-  setAdminNote(pendingPhotos.length ? `${pendingPhotos.length} photo(s) ready.` : "No photos selected.", pendingPhotos.length ? "ok" : "");
 }
 
-function setAdminNote(msg, type=""){
-  setNote(adminMsg, adminMsgText, msg, type);
+function adminLogout(){
+  isAdmin = false;
+  sessionStorage.removeItem(ADMIN_KEY);
+  hideAdminUI();
+  toast("Admin OFF");
 }
 
+function showAdminUI(){
+  $("adminBar").style.display = "block";
+  renderInventory();
+}
+function hideAdminUI(){
+  $("adminBar").style.display = "none";
+  renderInventory();
+}
+
+/* =========================
+   ADMIN CRUD
+========================= */
 function clearForm(){
-  ["year","make","model","trim","color","miles","engine","trans","drivetrain","motorSize","stock","vin","price","notes"].forEach(id=>{
-    el(id).value = "";
+  ["status","year","make","model","trim","price","miles","color","engine","trans","drive","stock","vin","notes"].forEach(id=>{
+    if($(id)) $(id).value="";
   });
-  photosInput.value = "";
-  pendingPhotos = [];
-  editId = null;
-  saveBtn.textContent = "Save Vehicle";
-  renderPhotoPreviews();
-  setAdminNote("", "");
+  if($("photos")) $("photos").value = "";
+  $("adminMsg").textContent = "";
+  $("adminBar").setAttribute("data-editing", "");
+  $("adminBar").setAttribute("data-id", "");
+  toast("Cleared");
 }
 
-function saveVehicle(){
-  if(!isAdmin){
-    setAdminNote("Admin required.", "warn");
-    return;
+async function readFilesAsDataUrls(fileList){
+  const files = Array.from(fileList || []);
+  const out = [];
+  for(const f of files){
+    // compress by drawing to canvas
+    const dataUrl = await fileToCompressedDataUrl(f, 1400, 0.82);
+    out.push(dataUrl);
   }
+  return out;
+}
 
-  // gather fields
-  const year = intNum(el("year").value);
-  const make = clean(el("make").value);
-  const model = clean(el("model").value);
+function fileToCompressedDataUrl(file, maxW=1400, quality=0.82){
+  return new Promise((resolve, reject)=>{
+    const fr = new FileReader();
+    fr.onload = ()=>{
+      const img = new Image();
+      img.onload = ()=>{
+        const scale = Math.min(1, maxW / img.width);
+        const w = Math.round(img.width * scale);
+        const h = Math.round(img.height * scale);
 
-  // required
-  if(!year || year < 1900 || year > 2100){
-    setAdminNote("Year is required (valid number).", "warn");
-    return;
-  }
-  if(!make || !model){
-    setAdminNote("Make and Model are required.", "warn");
-    return;
-  }
+        const c = document.createElement("canvas");
+        c.width = w; c.height = h;
+        const ctx = c.getContext("2d");
+        ctx.drawImage(img, 0, 0, w, h);
+        resolve(c.toDataURL("image/jpeg", quality));
+      };
+      img.onerror = reject;
+      img.src = fr.result;
+    };
+    fr.onerror = reject;
+    fr.readAsDataURL(file);
+  });
+}
 
-  const miles = intNum(el("miles").value);
-  const price = num(el("price").value);
+async function saveVehicle(){
+  if(!isAdmin) return;
 
-  const item = {
-    id: editId || uid(),
-    createdAt: editId ? (vehicles.find(v=>v.id===editId)?.createdAt || Date.now()) : Date.now(),
+  const editingId = $("adminBar").getAttribute("data-id") || "";
+
+  const v = {
+    id: editingId || crypto.randomUUID(),
+    status: ($("status").value || "Available").trim() || "Available",
+    year: ($("year").value||"").trim(),
+    make: ($("make").value||"").trim(),
+    model: ($("model").value||"").trim(),
+    trim: ($("trim").value||"").trim(),
+    price: ($("price").value||"").trim(),
+    miles: ($("miles").value||"").trim(),
+    color: ($("color").value||"").trim(),
+    engine: ($("engine").value||"").trim(),
+    trans: ($("trans").value||"").trim(),
+    drive: ($("drive").value||"").trim(),
+    stock: ($("stock").value||"").trim(),
+    vin: ($("vin").value||"").trim(),
+    notes: ($("notes").value||"").trim(),
+    createdAt: editingId ? (inventory.find(x=>x.id===editingId)?.createdAt || Date.now()) : Date.now(),
     updatedAt: Date.now(),
-
-    year,
-    make,
-    model,
-    trim: clean(el("trim").value),
-    color: clean(el("color").value),
-    miles: (miles != null ? miles : null),
-    engine: clean(el("engine").value),
-    motorSize: clean(el("motorSize").value),
-    trans: clean(el("trans").value),
-    drivetrain: clean(el("drivetrain").value),
-    stock: clean(el("stock").value),
-    vin: upper(el("vin").value),
-    price: (price != null ? Math.round(price) : null),
-    notes: clean(el("notes").value),
-    photos: pendingPhotos.slice()
+    photos: []
   };
 
-  if(editId){
-    const idx = vehicles.findIndex(v=>v.id===editId);
-    if(idx !== -1){
-      vehicles[idx] = item;
-    }else{
-      vehicles.unshift(item);
+  // photos: keep existing if editing unless new photos uploaded
+  const existing = editingId ? (inventory.find(x=>x.id===editingId)?.photos || []) : [];
+  const files = $("photos").files;
+  if(files && files.length){
+    try{
+      const imgs = await readFilesAsDataUrls(files);
+      v.photos = imgs;
+    }catch{
+      v.photos = existing;
     }
   }else{
-    vehicles.unshift(item);
+    v.photos = existing;
   }
 
-  save();
-  applyFilters();
-  showToast(editId ? "Updated" : "Saved");
-  setAdminNote(editId ? "Vehicle updated." : "Vehicle saved.", "ok");
-  clearForm();
-  // keep admin section visible
-  location.hash = "#inventory";
+  // basic validation (avoid empty cars)
+  const title = `${v.year} ${v.make} ${v.model}`.trim();
+  if(!title){
+    $("adminMsg").textContent = "Add at least Year/Make/Model.";
+    return;
+  }
+
+  const idx = inventory.findIndex(x=>x.id===v.id);
+  if(idx >= 0) inventory[idx] = v;
+  else inventory.unshift(v);
+
+  saveInventory();
+  renderInventory();
+
+  $("adminMsg").textContent = editingId ? "Updated." : "Saved.";
+  $("adminBar").setAttribute("data-id", v.id);
+  $("adminBar").setAttribute("data-editing", "1");
+  toast(editingId ? "Updated" : "Saved");
 }
 
-function adminMenu(id){
-  // quick manage: open details modal (admin buttons live there)
-  openVehicle(id);
-}
-
-function loadForEdit(id){
-  const v = vehicles.find(x=>x.id===id);
+function editVehicle(){
+  if(!isAdmin || !currentId) return;
+  const v = inventory.find(x=>x.id===currentId);
   if(!v) return;
 
-  // go admin section
-  location.hash = "#admin";
+  closeModal();
+  $("adminBar").scrollIntoView({behavior:"smooth", block:"start"});
 
-  editId = id;
-  saveBtn.textContent = "Update Vehicle";
+  $("adminBar").setAttribute("data-id", v.id);
+  $("adminBar").setAttribute("data-editing", "1");
 
-  el("year").value = v.year ?? "";
-  el("make").value = v.make ?? "";
-  el("model").value = v.model ?? "";
-  el("trim").value = v.trim ?? "";
-  el("color").value = v.color ?? "";
-  el("miles").value = v.miles ?? "";
-  el("engine").value = v.engine ?? "";
-  el("motorSize").value = v.motorSize ?? "";
-  el("trans").value = v.trans ?? "";
-  el("drivetrain").value = v.drivetrain ?? "";
-  el("stock").value = v.stock ?? "";
-  el("vin").value = v.vin ?? "";
-  el("price").value = v.price ?? "";
-  el("notes").value = v.notes ?? "";
+  $("status").value = v.status || "Available";
+  $("year").value = v.year || "";
+  $("make").value = v.make || "";
+  $("model").value = v.model || "";
+  $("trim").value = v.trim || "";
+  $("price").value = v.price || "";
+  $("miles").value = v.miles || "";
+  $("color").value = v.color || "";
+  $("engine").value = v.engine || "";
+  $("trans").value = v.trans || "";
+  $("drive").value = v.drive || "";
+  $("stock").value = v.stock || "";
+  $("vin").value = v.vin || "";
+  $("notes").value = v.notes || "";
+  $("photos").value = "";
 
-  // load photos
-  pendingPhotos = Array.isArray(v.photos) ? v.photos.slice() : [];
-  photosInput.value = "";
-  renderPhotoPreviews();
-
-  setAdminNote("Editing vehicle. Update fields and click Update Vehicle.", "warn");
-
-  // close vehicle modal if open
-  closeVehicle();
+  $("adminMsg").textContent = "Editing: " + `${v.year||""} ${v.make||""} ${v.model||""}`.trim();
+  toast("Edit mode");
 }
 
-function deleteVehicle(id){
-  if(!isAdmin) return;
+function deleteVehicle(){
+  if(!isAdmin || !currentId) return;
+  const v = inventory.find(x=>x.id===currentId);
+  if(!v) return;
+
   if(!confirm("Delete this vehicle?")) return;
 
-  vehicles = vehicles.filter(v=>v.id!==id);
-  save();
-  applyFilters();
-  showToast("Deleted");
-  closeVehicle();
+  inventory = inventory.filter(x=>x.id!==currentId);
+  saveInventory();
+  closeModal();
+  renderInventory();
+  toast("Deleted");
 }
 
-/* ===== Search helpers ===== */
-function clearSearch(){
-  qEl.value = "";
-  applyFilters();
+/* =========================
+   INIT
+========================= */
+function init(){
+  if(isAdmin) showAdminUI();
+  else hideAdminUI();
+  renderInventory();
 }
-
-/* ===== Keyboard UX ===== */
-document.addEventListener("keydown", (e)=>{
-  if(e.key === "Escape"){
-    // close modals
-    if(loginModal.style.display === "block") closeLogin();
-    if(vehModal.style.display === "block") closeVehicle();
-  }
-});
-
-/* ===== Initialize ===== */
-(function init(){
-  // create preview placeholder
-  renderPhotoPreviews();
-
-  // restore
-  load();
-
-  // if admin, show admin badge
-  updateAdminUI();
-
-  // initial render list
-  applyFilters();
-
-  // small safety: if no items, show message
-  setNote(invMsg, invMsgText, vehicles.length ? "Tap a vehicle for details." : "No vehicles yet. Admin can add inventory.", vehicles.length ? "" : "warn");
-})();
+init();
 </script>
 </body>
 </html>
-
-
