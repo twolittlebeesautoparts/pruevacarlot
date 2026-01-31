@@ -61,25 +61,34 @@ header{
   gap:14px; padding:12px 0;
 }
 .brand{
-  display:flex; align-items:center; gap:12px;
+  display:flex;
+  align-items:center;
+  gap:12px;
   min-width:240px;
 }
+
 .brand .logo{
-  height:125px;        /* readable, not massive */
+  height:125px;
   width:auto;
   display:block;
 
-  /* FLOATING CLEAN */
   background:transparent;
   border:none;
   border-radius:0;
   box-shadow:none;
 
-  /* VISIBILITY BOOST (this is the key) */
   filter:
     drop-shadow(0 0 0.75px rgba(255,255,255,.65))
     drop-shadow(0 8px 22px rgba(0,0,0,.65));
 }
+
+/* 🔑 THIS is what centers the letters visually */
+.brandText{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
 .brandText h1{
   font-size:14px; letter-spacing:.6px; font-weight:950;
 }
@@ -1162,6 +1171,7 @@ init();
 
 </body>
 </html>
+
 
 
 
